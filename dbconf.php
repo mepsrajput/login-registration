@@ -3,9 +3,9 @@
 	session_start();
 
 	$DB_host = "localhost";
-	$DB_user = "deepencl_admin";
-	$DB_pass = "g3l[uO]zOk*m";
-	$DB_name = "deepencl_users";
+	$DB_user = "admin";
+	$DB_pass = "password";
+	$DB_name = "userdb";
 
 	try
 	{
