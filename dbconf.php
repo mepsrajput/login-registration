@@ -15,6 +15,4 @@
 	}
 	include_once 'class.user.php';
 	$user = new USER($DB_con);
-	
-	$DB_con = null;
 ?>
