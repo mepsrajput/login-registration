@@ -46,9 +46,30 @@
 					if($row['email'] == $email) {
 						$email_err = "Sorry email id is already in use !";
 					}	else {
-							if($user->register($name,$email,$password)) {
-								header("Location: login.php");
-							}
+						
+							//Hash the password as we do NOT want to store our passwords in plain text.
+							$passwordHash = password_hash($password, PASSWORD_DEFAULT);
+							
+							//Prepare our INSERT statement.
+							//Remember: We are inserting a new row into our users table.
+							$sql = "INSERT INTO users (name, email, password) VALUES (:name, :email, :password)";
+							$stmt = $pdo->prepare($sql);
+							
+							//Bind our variables.
+							$stmt->bindValue(':name', $name);
+							$stmt->bindValue(':email', $email);
+							$stmt->bindValue(':password', $passwordHash);
+						 
+							//Execute the statement and insert the new account.
+							$result = $stmt->execute();
+							
+							//If the signup process is successful.
+							if($result == 1){
+								//What you do here is up to you!
+								header("location: login.php");
+							} else {
+								echo "some error occured";
+							}								
 						}
 				}
 				catch(PDOException $e) {
