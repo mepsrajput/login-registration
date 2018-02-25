@@ -40,7 +40,7 @@
 		}   else {
 				try {
 					$stmt = $DB_con->prepare("SELECT name, email, password FROM users WHERE email=:email");
-					$stmt->execute(array(':name'=>$name, ':email'=>$email, ':password'=>$password));
+					$stmt->execute(array(':email'=>$email));
 					$row=$stmt->fetch(PDO::FETCH_ASSOC);
 				
 					if($row['email'] == $email) {
@@ -53,7 +53,7 @@
 							//Prepare our INSERT statement.
 							//Remember: We are inserting a new row into our users table.
 							$sql = "INSERT INTO users (name, email, password) VALUES (:name, :email, :password)";
-							$stmt = $pdo->prepare($sql);
+							$stmt = $DB_con->prepare($sql);
 							
 							//Bind our variables.
 							$stmt->bindValue(':name', $name);
