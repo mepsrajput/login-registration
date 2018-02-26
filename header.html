@@ -106,9 +106,6 @@
 					
 				<div id="navbarcol" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav navbar-right">
-						<li>
-						ok
-						</li>
 						<li><a href="About.php">About</a></li>
 						<li><a href="Faculty.php">Faculty</a></li>
 						<li><a href="Courses.php">Courses</a></li>
@@ -117,6 +114,17 @@
 						<li><a href="ContactUs.php">Contact Us&nbsp;(<span 
 							class="glyphicon glyphicon-phone-alt navGlyphicon">
 							</span><span>)</span></a>
+						</li>
+						<li>
+						<?php
+							
+							if($user->is_loggedin()!="") {
+								echo "<a href='logout.php?logout=true'>Logout</a>";
+							} else {
+								echo "<a href='register.php'>Login/Register</a>";
+							}
+							
+						?>	
 						</li>
 					</ul>
 				</div>
